@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MovieExplorer | Discover Your Next Obsession</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="toast-container"></div>
+
+    <div class="hero-background" id="heroBg">
+        <div class="hero-overlay"></div>
+    </div>
+
+    <nav class="navbar">
+        <div class="container nav-content">
+            <div class="logo" onclick="location.reload()">
+                <div class="logo-symbol">▶</div>
+                <span class="logo-text">Movie<span class="highlight">Explorer</span></span>
+            </div>
+            <button id="watchlistBtn" class="nav-btn" title="My Watchlist">
+                <i class="fas fa-heart"></i> <span class="btn-text">Watchlist</span>
+            </button>
+        </div>
+    </nav>
+
+    <header class="hero-section">
+        <div class="container hero-content">
+            <h1 class="hero-title">Unlimited movies, TV shows, and more.</h1>
+            <p class="hero-subtitle">Search for your favorite titles and create your ultimate watchlist.</p>
+            
+            <div class="search-wrapper-large">
+                <div class="search-bar">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="searchInput" placeholder="What are you looking for?">
+                    <button id="micBtn" class="mic-btn"><i class="fas fa-microphone"></i></button>
+                </div>
+                <button id="searchBtn" class="cta-search-btn">Get Started <i class="fas fa-chevron-right"></i></button>
+            </div>
+            
+            <div id="searchHistory" class="history-chips"></div>
+        </div>
+    </header>
+
+    <section class="controls-section sticky-controls">
+        <div class="container controls-bar">
+            <div class="filter-group">
+                <label class="filter-chip">
+                    <input type="radio" name="type" value="" checked>
+                    <span>All</span>
+                </label>
+                <label class="filter-chip">
+                    <input type="radio" name="type" value="movie">
+                    <span>Movies</span>
+                </label>
+                <label class="filter-chip">
+                    <input type="radio" name="type" value="series">
+                    <span>TV Series</span>
+                </label>
+                <label class="filter-chip">
+                    <input type="radio" name="type" value="game">
+                    <span>Games</span>
+                </label>
+            </div>
+
+            <div class="sort-wrapper">
+                <select id="sortOptions" disabled>
+                    <option value="default">Sort by: Relevance</option>
+                    <option value="year_desc">Year: Newest First</option>
+                    <option value="year_asc">Year: Oldest First</option>
+                    <option value="rating_desc">Rating: High to Low</option>
+                </select>
+                <i class="fas fa-chevron-down dropdown-arrow"></i>
+            </div>
+        </div>
+    </section>
+
+    <main class="container">
+        <div id="loader" class="hidden">
+            <div class="spinner-ring"></div>
+            <p>Fetching data...</p>
+        </div>
+
+        <div id="fallbackMessage" class="hidden status-msg warning"></div>
+        <div id="errorMessage" class="hidden status-msg error"></div>
+        
+        <h2 id="sectionTitle" class="section-title hidden">My Watchlist</h2>
+
+        <div id="movieGrid" class="grid-layout">
+            </div>
+
+        <div class="load-more-container">
+            <button id="loadMoreBtn" class="hidden ghost-btn">Load More Results</button>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <div class="footer-brand">MovieExplorer Pro</div>
+            <div class="footer-links">
+                <a href="#" onclick="openTextModal('privacy'); return false;">Privacy Policy</a>
+                <a href="#" onclick="openTextModal('terms'); return false;">Terms of Use</a>
+              
+                <a href="https://www.omdbapi.com/" target="_blank">API Source <i class="fas fa-external-link-alt" style="font-size:0.7rem; margin-left:3px;"></i></a>
+            </div>
+            <div class="copyright">© 2026 MovieExplorer Inc. Built by Aryan.</div>
+        </div>
+    </footer>
+
+    <div id="movieModal" class="modal hidden">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <button class="close-btn">&times;</button>
+            <div id="modalBody" class="modal-body-content"></div>
+        </div>
+    </div>
+
+    <div class="fab-container" onclick="triggerSurprise()">
+        <div class="fab-circle">
+            <i class="fas fa-dice"></i>
+        </div>
+        <span class="fab-label">Surprise Me</span>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
